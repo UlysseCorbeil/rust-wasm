@@ -204,12 +204,13 @@ html { font-family: 'Inter', sans-serif; }
 
 
 .about_container li p{
-  line-height:20px;
+  padding-top: 1rem;
+  line-height: 1.5;
   color: #555;
 }
 
 .about_container ol{
-  max-width:500px;
+  max-width: 50%;
   text-align:justify;
 }
 
