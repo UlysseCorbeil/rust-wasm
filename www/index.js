@@ -1,3 +1,3 @@
-import * as wasm from "rust-wasm";
+import * as wasm from "../pkg/rust_wasm";
 
 wasm.run_app();
