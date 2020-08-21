@@ -1,0 +1,15 @@
+{
+  "name": "rust-wasm-ulysse-co",
+  "collaborators": [
+    "Ulysse <ulysse98@hotmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "rust_wasm_ulysse_co_bg.wasm",
+    "rust_wasm_ulysse_co.js",
+    "rust_wasm_ulysse_co.d.ts"
+  ],
+  "module": "rust_wasm_ulysse_co.js",
+  "types": "rust_wasm_ulysse_co.d.ts",
+  "sideEffects": false
+}
