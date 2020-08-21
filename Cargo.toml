@@ -1,5 +1,5 @@
 [package]
-name = "rust-wasm-ulysse-co"
+name = "rust-wasm"
 version = "0.1.0"
 authors = ["Ulysse <ulysse98@hotmail.com>"]
 edition = "2018"
