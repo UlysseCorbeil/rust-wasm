@@ -1,12 +1,12 @@
 use crate::api;
-use crate::components::{ ModuleImageTextCard };
-use crate::types::{ ModuleImageText };
+use crate::components::ModuleImageTextCard;
+use crate::types::ModuleImageText;
 
 use anyhow::Error;
 
 use yew::format::Json;
-use yew::services::fetch::FetchTask;
 use yew::prelude::*;
+use yew::services::fetch::FetchTask;
 
 struct State {
     module_image_text: Vec<ModuleImageText>,
@@ -27,7 +27,6 @@ pub enum Msg {
 }
 
 impl Component for About {
-
     type Message = Msg;
     type Properties = ();
 
@@ -40,7 +39,7 @@ impl Component for About {
             state: State {
                 module_image_text,
                 get_module_image_text_error: None,
-                get_module_image_text_loaded: false
+                get_module_image_text_loaded: false,
             },
             link,
             task: None,
@@ -52,15 +51,17 @@ impl Component for About {
             Msg::GetModuleImageText => {
                 self.state.get_module_image_text_loaded = false;
 
-                let handler = self
-                    .link
-                    .callback( move |response: api::FetchResponse<Vec<ModuleImageText>>| {
+                let handler = self.link.callback(
+                    move |response: api::FetchResponse<Vec<ModuleImageText>>| {
                         let (_, Json(data)) = response.into_parts();
                         match data {
-                            Ok(module_image_text) => Msg::GetModuleImageTextSuccess(module_image_text),
+                            Ok(module_image_text) => {
+                                Msg::GetModuleImageTextSuccess(module_image_text)
+                            }
                             Err(err) => Msg::GetModuleImageTextError(err),
                         }
-                    });
+                    },
+                );
 
                 self.task = Some(api::get_module_image_text(handler));
                 true
@@ -77,7 +78,6 @@ impl Component for About {
                 self.state.get_module_image_text_loaded = true;
                 true
             }
-
         }
     }
 
@@ -86,7 +86,6 @@ impl Component for About {
     }
 
     fn view(&self) -> Html {
-
         let module_image_text: Vec<Html> = self
             .state
             .module_image_text
@@ -99,24 +98,23 @@ impl Component for About {
             .collect();
 
         html! {
-            <div class="about_container">
-                <div class="about_content">
-                    <div class="about_title"> { " Things I want to improve.. " }</div>
-                    <ol>
-                        <li> { "Implement better and more secure routing." }
-                            <p> { "The routing is pretty basic and is handled is set-up inside a route file where I hard coded my paths, I would like to improve the way routing works and unit test each outcome to prevent 404s or loading errors." } </p>
-                        </li>
-                        <li> {" Create a small framework to generate HTML, JS, CSS and loading data in a more efficient way." }
-                            <p> { " I didn't really spent much time designing an architecture that I could use in the future. My plan is to develop a framework or template around rust to set-up my environement in a way that all I have to do is develop modules and implement new functionalities.. The design would mostly work through inheritance and classic OOP logic." } </p>
-                        </li>
-                        <li> {" Build a more « robust » framework around component rendering. " }
-                            <p> { " I mostly hard coded my components and pages, being able to use pre-made templates would save me time and speed up compiling time. It would also prevent some recursion-limit issues, if done right." } </p>
-                        </li>
-                    </ol>
-                </div>
+           <div class="about_container">
+               <div class="about_content">
+                   <div class="about_title"> { " Things I want to improve.. " }</div>
+                   <ol>
+                       <li> { "Implement better and more secure routing." }
+                           <p> { "The routing is pretty basic and is handled is set-up inside a route file where I hard coded my paths, I would like to improve the way routing works and unit test each outcome to prevent 404s or loading errors." } </p>
+                       </li>
+                       <li> {" Create a small framework to generate HTML, JS, CSS and loading data in a more efficient way." }
+                           <p> { " I didn't really spent much time designing an architecture that I could use in the future. My plan is to develop a framework or template around rust to set-up my environement in a way that all I have to do is develop modules and implement new functionalities.. The design would mostly work through inheritance and classic OOP logic." } </p>
+                       </li>
+                       <li> {" Build a more « robust » framework around component rendering. " }
+                           <p> { " I mostly hard coded my components and pages, being able to use pre-made templates would save me time and speed up compiling time. It would also prevent some recursion-limit issues, if done right." } </p>
+                       </li>
+                   </ol>
+               </div>
 
-            </div>
-         }
+           </div>
+        }
     }
-
 }

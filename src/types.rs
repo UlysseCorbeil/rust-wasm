@@ -6,5 +6,5 @@ pub struct ModuleImageText {
     pub name: String,
     pub description: String,
     pub text: String,
-    pub image: String
+    pub image: String,
 }

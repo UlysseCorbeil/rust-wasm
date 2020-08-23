@@ -1,15 +1,15 @@
-#![recursion_limit="256"]
+#![recursion_limit = "256"]
 
 extern crate cfg_if;
 extern crate wasm_bindgen;
 
 mod api;
-mod types;
-mod utils;
 mod app;
 mod components;
 mod pages;
 mod route;
+mod types;
+mod utils;
 
 use cfg_if::cfg_if;
 use wasm_bindgen::prelude::*;
@@ -26,7 +26,7 @@ cfg_if! {
 }
 
 #[wasm_bindgen]
-extern {
+extern "C" {
     fn alert(s: &str);
 }
 

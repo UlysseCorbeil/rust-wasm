@@ -1,14 +1,13 @@
 use yew::prelude::*;
 use yew_router::prelude::*;
 
-use crate::components::{ Nav, Footer };
-use crate::pages::{ Home, ModuleDetail, About };
+use crate::components::{Footer, Nav};
+use crate::pages::{About, Home, ModuleDetail};
 use crate::route::Route;
 
 pub struct App {}
 
 impl Component for App {
-
     type Message = ();
     type Properties = ();
 
@@ -25,14 +24,13 @@ impl Component for App {
     }
 
     fn view(&self) -> Html {
-
         let render = Router::render(move |switch: Route| match switch {
             Route::HomePage => {
                 html! { <Home /> }
-            },
+            }
             Route::About => {
                 html! { <About /> }
-            },
+            }
             Route::ModuleDetail(id) => {
                 html! { <ModuleDetail id=id /> }
             }
@@ -46,5 +44,4 @@ impl Component for App {
             </>
         }
     }
-
 }

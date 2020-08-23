@@ -1,12 +1,12 @@
 use crate::api;
-use crate::components::{ ModuleImageTextCard };
-use crate::types::{ ModuleImageText };
+use crate::components::ModuleImageTextCard;
+use crate::types::ModuleImageText;
 
 use anyhow::Error;
 
 use yew::format::Json;
-use yew::services::fetch::FetchTask;
 use yew::prelude::*;
+use yew::services::fetch::FetchTask;
 
 struct State {
     module_image_text: Vec<ModuleImageText>,
@@ -27,7 +27,6 @@ pub enum Msg {
 }
 
 impl Component for Home {
-
     type Message = Msg;
     type Properties = ();
 
@@ -40,7 +39,7 @@ impl Component for Home {
             state: State {
                 module_image_text,
                 get_module_image_text_error: None,
-                get_module_image_text_loaded: false
+                get_module_image_text_loaded: false,
             },
             link,
             task: None,
@@ -52,15 +51,17 @@ impl Component for Home {
             Msg::GetModuleImageText => {
                 self.state.get_module_image_text_loaded = false;
 
-                let handler = self
-                    .link
-                    .callback( move |response: api::FetchResponse<Vec<ModuleImageText>>| {
+                let handler = self.link.callback(
+                    move |response: api::FetchResponse<Vec<ModuleImageText>>| {
                         let (_, Json(data)) = response.into_parts();
                         match data {
-                            Ok(module_image_text) => Msg::GetModuleImageTextSuccess(module_image_text),
+                            Ok(module_image_text) => {
+                                Msg::GetModuleImageTextSuccess(module_image_text)
+                            }
                             Err(err) => Msg::GetModuleImageTextError(err),
                         }
-                    });
+                    },
+                );
 
                 self.task = Some(api::get_module_image_text(handler));
                 true
@@ -77,7 +78,6 @@ impl Component for Home {
                 self.state.get_module_image_text_loaded = true;
                 true
             }
-
         }
     }
 
@@ -86,7 +86,6 @@ impl Component for Home {
     }
 
     fn view(&self) -> Html {
-
         let module_image_text: Vec<Html> = self
             .state
             .module_image_text
@@ -118,5 +117,4 @@ impl Component for Home {
             </div>
         }
     }
-
 }

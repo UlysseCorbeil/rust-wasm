@@ -2,14 +2,14 @@ use crate::route::Route;
 use yew::prelude::*;
 use yew_router::components::RouterAnchor;
 
-pub struct Nav { }
+pub struct Nav {}
 
 impl Component for Nav {
     type Message = ();
     type Properties = ();
 
     fn create(_: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self { }
+        Self {}
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {

@@ -22,7 +22,7 @@ pub struct ModuleDetail {
 
 #[derive(Properties, Clone)]
 pub struct Props {
-    pub id: i32
+    pub id: i32,
 }
 
 pub enum Msg {
@@ -43,7 +43,7 @@ impl Component for ModuleDetail {
             state: State {
                 module_image_text: None,
                 get_module_image_text_error: None,
-                get_module_image_text_loaded: false
+                get_module_image_text_loaded: false,
             },
             link,
             task: None,
@@ -52,17 +52,18 @@ impl Component for ModuleDetail {
 
     fn update(&mut self, message: Self::Message) -> ShouldRender {
         match message {
-
             Msg::GetModuleImageText => {
-                let handler = self
-                    .link
-                    .callback(move |response: api::FetchResponse<ModuleImageText>| {
-                        let (_, Json(data)) = response.into_parts();
-                        match data {
-                            Ok(module_image_text) => Msg::GetModuleImageTextSuccess(module_image_text),
-                            Err(err) => Msg::GetModuleImageTextError(err),
-                        }
-                    });
+                let handler =
+                    self.link
+                        .callback(move |response: api::FetchResponse<ModuleImageText>| {
+                            let (_, Json(data)) = response.into_parts();
+                            match data {
+                                Ok(module_image_text) => {
+                                    Msg::GetModuleImageTextSuccess(module_image_text)
+                                }
+                                Err(err) => Msg::GetModuleImageTextError(err),
+                            }
+                        });
 
                 self.task = Some(api::get_module_detail(self.props.id, handler));
                 true
@@ -79,9 +80,7 @@ impl Component for ModuleDetail {
                 self.state.get_module_image_text_loaded = true;
                 true
             }
-
         }
-
     }
 
     fn change(&mut self, _: Self::Properties) -> ShouldRender {
@@ -89,7 +88,6 @@ impl Component for ModuleDetail {
     }
 
     fn view(&self) -> Html {
-
         if let Some(ref module_image_text) = self.state.module_image_text {
             html! {
                 <div class="module_image_text_detail_container">
@@ -111,6 +109,5 @@ impl Component for ModuleDetail {
                 </div>
             }
         }
-
     }
 }
