@@ -3,5 +3,6 @@ target/
 wasm-pack.log
 Cargo.lock
 www/dist/
-www/*
+www/*.js
+www/*.ts
 www/package-lock.json
