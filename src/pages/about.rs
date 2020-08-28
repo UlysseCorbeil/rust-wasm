@@ -86,7 +86,7 @@ impl Component for About {
     }
 
     fn view(&self) -> Html {
-        let module_image_text: Vec<Html> = self
+        let _module_image_text: Vec<Html> = self
             .state
             .module_image_text
             .iter()
