@@ -5,9 +5,6 @@
 
 ```
 git clone https://github.com/UlysseCorbeil/rust-wasm
-```
-
-```
 cd rust-wasm/
 wasm-pack build
 cd www
