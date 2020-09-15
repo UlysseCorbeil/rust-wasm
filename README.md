@@ -1,6 +1,6 @@
 ### Try
 
-- Install nodejs & npm -> https://nodejs.org/en/
+- Install nodejs -> https://nodejs.org/en/
 - Install rust         -> https://www.rust-lang.org/tools/install
 
 ```
