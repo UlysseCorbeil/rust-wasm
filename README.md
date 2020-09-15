@@ -13,7 +13,12 @@ cd rust-wasm/
 ```
 wasm-pack build
 ```
+```
 cd www
+```
+```
 npm i
+```
 npm run start
+```
 
