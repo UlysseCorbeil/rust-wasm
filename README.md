@@ -1,7 +1,7 @@
-### About
+### Try
 
 - Install rust
-- Install npm
+- Install nodejs & npm
 
 ```
 cargo generate --git https://github.com/rustwasm/wasm-pack-template.git --name my-project
